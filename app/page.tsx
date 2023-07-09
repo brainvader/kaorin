@@ -1,3 +1,5 @@
+'use client'
+
 import { ReactElement } from 'react'
 import Designer from './components/designer'
 import styles from './page.module.css'
