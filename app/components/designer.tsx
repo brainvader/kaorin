@@ -1,13 +1,18 @@
-import { ReactElement, useEffect, useRef, useState } from "react";
+import { ReactElement, useEffect, useRef, useState, PointerEvent } from "react";
 import { XML_NAME_SPACE, XML_VERSION } from "../utils/constants";
 import styles from './designer.module.css'
-
-const CIRCLE_RADIUS = 80;
+import Pointer from "./pointer";
+import { PointerPosition } from "../types";
 
 export default function Designer(): ReactElement<SVGSVGElement> {
     const ref = useRef<SVGSVGElement | null>(null);
     const [width, setWidth] = useState<number>(0);
     const [height, setHeight] = useState<number>(0);
+
+    const [position, setPosition] = useState<PointerPosition>({
+        x: 0,
+        y: 0
+    })
 
     useEffect(() => {
         if (!ref.current) return;
@@ -21,16 +26,17 @@ export default function Designer(): ReactElement<SVGSVGElement> {
         return () => resizeObserver.disconnect();
     }, []);
 
+    const handlePointerMove = (event: PointerEvent<SVGSVGElement>) => {
+        setPosition({ ...position, x: event.clientX, y: event.clientY })
+    }
+
     return (
         <svg ref={ref}
+            onPointerMove={handlePointerMove}
             version={XML_VERSION}
             xmlns={XML_NAME_SPACE}
             className={styles.designer}>
-            <circle
-                cx={width / 2 + CIRCLE_RADIUS / 2}
-                cy={height / 2 - CIRCLE_RADIUS / 2}
-                r={CIRCLE_RADIUS}
-                fill="green" />
+            <Pointer position={position} />
         </svg>
     )
 }
