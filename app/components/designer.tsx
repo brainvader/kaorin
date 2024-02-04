@@ -3,7 +3,6 @@ import { XML_NAME_SPACE, XML_VERSION } from "../utils/constants";
 import styles from './designer.module.css'
 import Pointer from "./pointer";
 import { PointerPosition } from "../types";
-import Grid from "./grid";
 
 export default function Designer(): ReactElement<SVGSVGElement> {
     const ref = useRef<SVGSVGElement | null>(null);
@@ -38,7 +37,6 @@ export default function Designer(): ReactElement<SVGSVGElement> {
             xmlns={XML_NAME_SPACE}
             className={styles.designer}>
             <Pointer position={position} />
-            <Grid />
         </svg>
     )
 }
