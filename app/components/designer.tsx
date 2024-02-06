@@ -2,14 +2,14 @@ import { ReactElement, useEffect, useRef, useState, PointerEvent } from "react";
 import { XML_NAME_SPACE, XML_VERSION } from "../utils/constants";
 import styles from './designer.module.css'
 import Pointer from "./pointer";
-import { PointerPosition } from "../types";
+import { Position } from "../types";
 
 export default function Designer(): ReactElement<SVGSVGElement> {
     const ref = useRef<SVGSVGElement | null>(null);
     const [width, setWidth] = useState<number>(0);
     const [height, setHeight] = useState<number>(0);
 
-    const [position, setPosition] = useState<PointerPosition>({
+    const [position, setPosition] = useState<Position>({
         x: 0,
         y: 0
     })

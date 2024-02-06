@@ -1,9 +1,9 @@
-import { PointerPosition } from "../types";
+import { Position } from "../types";
 
 const CIRCLE_RADIUS = 5;
 
 type PointerProps = {
-    position: PointerPosition
+    position: Position
 }
 
 export default function Pointer({ position }: PointerProps) {

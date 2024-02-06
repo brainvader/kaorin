@@ -1,4 +1,4 @@
-export type PointerPosition = {
+export type Position = {
     x: number,
     y: number
 }
